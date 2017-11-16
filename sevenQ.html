@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sevenQ</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+		}
+		#canvas {
+			position: relative;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.dd {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			background: #FFF;
+			width: 2px;
+			height: 10px;
+			z-index: 9999;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="dd"></div> -->
+	<canvas id='canvas'>
+		oH`你这个浏览器不支持canvas喔，换个先进点的试一下呗。
+	</canvas>
+
+
+	<script type="text/javascript">
+		window.onload = function () {
+			var canvas = document.getElementById('canvas')
+			var context = canvas.getContext('2d')
+
+			canvas.width = 400;
+			canvas.height = 400;
+
+			var block = [
+				{p:[{x:0,y:0},{x:200,y:200},{x:0,y:400}],color:"blue"},
+				{p:[{x:400,y:0},{x:0,y:0},{x:200,y:200}],color:"green"},
+				{p:[{x:0,y:400},{x:100,y:300},{x:200,y:400}],color:"pink"},
+				{p:[{x:300,y:100},{x:200,y:200},{x:300,y:300}],color:"yellow"},
+				{p:[{x:200,y:400},{x:400,y:200},{x:400,y:400}],color:"orange"},
+				{p:[{x:300,y:300},{x:200,y:200},{x:100,y:300},{x:200,y:400}],color:"Purple"},
+				{p:[{x:400,y:0},{x:400,y:200},{x:300,y:300},{x:300,y:100}],color:"red"}
+			]
+
+			for (var i=0; i<block.length; i++) {
+				draw(block[i], context)
+			}
+		}
+		function draw (val, ctx) {
+			ctx.beginPath()
+			ctx.moveTo(val.p[0].x,val.p[0].y)
+			for (var j=1; j<val.p.length; j++) {
+				ctx.lineTo(val.p[j].x,val.p[j].y)
+			}
+		
+
+			ctx.fillStyle = val.color
+			ctx.fill()
+
+		}
+
+	</script>
+</body>
+</html>
