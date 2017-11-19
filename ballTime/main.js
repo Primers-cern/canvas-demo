@@ -6,7 +6,10 @@ var ran,  // 小球半径
     ct  // 储存context
 
 var nowTime = new Date() //储存当前显示的时间
+var effectState = 1 //动画状态默认开启
 var balls = [] //储存动画出现的彩色小球
+
+
 
 window.onload = function () {
 	var canvas = document.getElementById('canvas')
@@ -23,43 +26,68 @@ window.onload = function () {
         arrange() // 数字显示方法
         update()  // 特效更新方法
     }, 50);
+
+    // 动画开关
+    var effectBtn = document.getElementById("effectBtn")
+    effectBtn.addEventListener('click', function () {
+    	isEffect()
+    })
+}
+
+// 动画状态修改
+function isEffect () {
+	if (effectState) {
+		effectState = 0
+	} else {
+		effectState = 1
+	}
 }
 
 
 // 动画刷新方法
 function update () {
-    nextTime = new Date()
-    var nextHours = nextTime.getHours()
-    var nextMinutes = nextTime.getMinutes()
-    var nextSeconds =  nextTime.getSeconds()
+    nextTime = new Date() // 重新获取时间
 
-    var nowHours = nowTime.getHours()
-    var nowMinutes = nowTime.getMinutes()
-    var nowSeconds =  nowTime.getSeconds()
+    if (effectState == 1) {  // 判定当特效状态可用时才执行逝去动画
+	    var nextHours = nextTime.getHours()
+	    var nextMinutes = nextTime.getMinutes()
+	    var nextSeconds =  nextTime.getSeconds()
 
-    if (nextTime != nowTime) { //节约性能，先进行总的判断，再细分判断
-        if (parseInt(nextHours/10) != parseInt(nowHours/10)) {
-            draw(marginL, parseInt(nowHours/10))
-        }
-        if (parseInt(nextHours%10) != parseInt(nowHours%10)) {
-            draw(marginL+16*(ran+1), parseInt(nowHours%10))
-        }
-        if (parseInt(nextMinutes/10) != parseInt(nowMinutes/10)) {
-            draw(marginL+42*(ran+1), parseInt(nowMinutes/10))
-        }
-        if (parseInt(nextMinutes%10) != parseInt(nowMinutes%10)) {
-            draw(marginL+58*(ran+1), parseInt(nowMinutes%10))
-        }
-        if (parseInt(nextSeconds/10) != parseInt(nowSeconds/10)) {
-            addBall(marginL+84*(ran+1), parseInt(nowSeconds/10))
-        }
-        if (parseInt(nextSeconds%10) != parseInt(nowSeconds%10)) {
-            addBall(marginL+100*(ran+1),parseInt(nowSeconds%10))
-        }
-        nowTime = nextTime
-    }
+	    var nowHours = nowTime.getHours()
+	    var nowMinutes = nowTime.getMinutes()
+	    var nowSeconds =  nowTime.getSeconds()
 
-    updateBall()
+	    // 对比next和now，如有变化，把对应位置动画小球放入balls数组中
+
+	    if (nextTime != nowTime) { //节约性能，先进行总的判断，再细分判断
+	        if (parseInt(nextHours/10) != parseInt(nowHours/10)) {
+	            draw(marginL, parseInt(nowHours/10))
+	        }
+	        if (parseInt(nextHours%10) != parseInt(nowHours%10)) {
+	            draw(marginL+16*(ran+1), parseInt(nowHours%10))
+	        }
+	        if (parseInt(nextMinutes/10) != parseInt(nowMinutes/10)) {
+	            draw(marginL+42*(ran+1), parseInt(nowMinutes/10))
+	        }
+	        if (parseInt(nextMinutes%10) != parseInt(nowMinutes%10)) {
+	            draw(marginL+58*(ran+1), parseInt(nowMinutes%10))
+	        }
+	        if (parseInt(nextSeconds/10) != parseInt(nowSeconds/10)) {
+	            addBall(marginL+84*(ran+1), parseInt(nowSeconds/10))
+	        }
+	        if (parseInt(nextSeconds%10) != parseInt(nowSeconds%10)) {
+	            addBall(marginL+100*(ran+1),parseInt(nowSeconds%10))
+	        }
+	    }
+	    updateBall()
+	    
+	} else {
+    	balls.splice(0, balls.length)
+    	// 清空小球数组，初始化动画
+    	console.log(balls)
+	}
+
+	nowTime = nextTime  // 执行后更新nowTime
 }
 
 function addBall (left, num) {
@@ -78,7 +106,6 @@ function addBall (left, num) {
             }
         }
     }
-    
 }
 
 function updateBall () {
