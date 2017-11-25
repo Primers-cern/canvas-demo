@@ -48,12 +48,17 @@ Canvas-Demos
 
 <br/>
 
-globalCompositeOperation演示-[link](http://primerscern.xyz/canvas-demo/gCO)
+globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)
 -------------------------
-演示Demo-画布在设置不同的globalCompositeOperation的属性时展现的不同效果
+演示Demo-画布在设置不同的globalCompositeOperation的属性时展现的不同效果。<br/>
+**注：该属性在IE以及EDGE上支持不太好，调用后会出现混乱。有待探究**
 
 * 24 Nov
 
 >①通过按钮选择不同的属性值，效果实时呈现。<br/>
 >②响应式布局，根据窗口高度呈现两种不同布局模式。<br/>
 >③通过颜色实现友好区分判断。
+
+* 25 Nov
+
+>①优化布局垂直排列时的居中模式。

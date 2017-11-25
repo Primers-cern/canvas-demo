@@ -12,19 +12,19 @@
 	}
 
 	.content {
-		position: relative;
-		height: 100vh;
-		width: 900px;
-		min-width: 700px;
+		/*background: #ccc;*/
 
-		margin: 0 auto;
-		overflow: hidden;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		width: 900px;
 	}
 
 	.canBox {
 		position: relative;
 		width: 700px;
-		margin: 60px auto 40px auto;
+		margin: 16px auto;
 		border: 2px solid #b063d1;
 	}
 
@@ -58,17 +58,9 @@
 		transition: color .1s ease, background .1s ease;
 	}
 
-	@media screen and (max-height: 740px) {
-		.canBox {
-			margin-top: 20px;
-			margin-bottom: 10px;
-		}
-	}
-
 	@media screen and (max-height: 670px) {
 		.canBox {
-			margin-top: 10px;
-			margin-bottom: 8px;
+			margin: 8px auto;
 		}
 
 		a {
@@ -78,6 +70,10 @@
 	}
 
 	@media screen and (max-height: 620px) {
+		.content {
+			height: 100%;
+		}
+
 		.canBox {
 			position: absolute;
 			left: 0;
