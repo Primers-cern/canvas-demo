@@ -47,10 +47,10 @@ Canvas-Demos
 >③均衡的星星密度，窗口的大小不影响你欣赏美丽的星空。
 
 <br/>
-globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)
---------------------------------
+关于globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)
+------------------------------
 
-Demo演示画布在设置不同的globalCompositeOperation的属性时展现的不同效果
+演示Demo-画布在设置不同的globalCompositeOperation的属性时展现的不同效果
 
 * 24 Nov
 
