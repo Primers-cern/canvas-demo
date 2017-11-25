@@ -5,6 +5,7 @@
 <br/>
 - ### 2.圆点时钟 - [link](http://primerscern.xyz/canvas-demo/ballTime)
 利用canvas标签绘制圆形，排列出当前时间（类似于电子钟）
+
 > #### 16 Nov - 初始版 v1.0
 >初始功能：数字时钟<br/>
 >①使用间隔函数每秒绘制，实现时钟变换。
@@ -33,3 +34,12 @@
 >①画布占满整个窗口，沉浸感十足。<br/>
 >②窗口变化时自适应改变画布大小，使用事件节流且解决滚动条问题<br/>
 >③均衡的星星密度，窗口的大小不影响你欣赏美丽的星空。
+
+<br/>
+- ### 4.globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)
+Demo演示画布在设置不同的globalCompositeOperation的属性时展现的不同效果
+
+> #### 24 Nov
+>①通过按钮选择不同的属性值，效果实时呈现。<br/>
+>②响应式布局，根据窗口高度呈现两种不同布局模式。<br/>
+>③通过颜色实现友好区分判断。

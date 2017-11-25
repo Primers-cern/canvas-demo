@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>globalCompositeOperation</title>
+</head>
+<style>
+	body, html, div, canvas, a {
+		padding: 0;
+		margin: 0;
+		font-size: 0; /*消除inlin-block的间隙*/
+	}
+
+	.content {
+		position: relative;
+		height: 100vh;
+		width: 900px;
+		min-width: 700px;
+
+		margin: 0 auto;
+		overflow: hidden;
+	}
+
+	.canBox {
+		position: relative;
+		width: 700px;
+		margin: 60px auto 40px auto;
+		border: 2px solid #b063d1;
+	}
+
+	.canBox p {
+		font: 28px/1 "Microsoft Yahei";
+		color: #b063d1;
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		top: 0;
+	}
+
+	.canBox span {
+		font: 12px/1 "Microsoft Yahei";
+		color: #ce9ee2;
+		position: absolute;
+		width: 100%;
+		bottom: 10px;
+		left: 10px;
+	}
+
+	a {
+		display: inline-block;
+		font: 18px/38px 'Microsoft Yahei';
+		width: 21%;
+		height: 38px;
+		border-radius: 5px;
+	
+		margin: 3px 2%;
+		text-align: center;
+		transition: color .1s ease, background .1s ease;
+	}
+
+	@media screen and (max-height: 740px) {
+		.canBox {
+			margin-top: 20px;
+			margin-bottom: 10px;
+		}
+	}
+
+	@media screen and (max-height: 670px) {
+		.canBox {
+			margin-top: 10px;
+			margin-bottom: 8px;
+		}
+
+		a {
+			height: 26px;
+			line-height: 26px;
+		}
+	}
+
+	@media screen and (max-height: 620px) {
+		.canBox {
+			position: absolute;
+			left: 0;
+			margin: 0;
+		}
+
+		.choice {
+			position: absolute;
+			right: 0;
+			width: 190px;
+			height: 504px;
+		}
+
+		a {
+			display: block;
+			height: 36px;
+			line-height: 36px;
+			width: 170px;
+			margin: 9px 10px; 
+		}
+
+		.canBox, .choice {
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+
+	.source {
+		color: #ff7d94;
+	}
+
+	.destin {
+		color: #06aef7;
+	}
+
+	.other {
+		color: #00d000
+	}
+
+	a:hover, .check {
+		background: #999;
+		color: #fff;
+		text-decoration: none;
+	}
+
+</style>
+<body>
+	<div class="content">
+		<div class="canBox">
+			<p></p>
+			<canvas id="canvas"></canvas>
+			<span>*注：图中内容先绘制圆，再绘制三角。</span>
+		</div>
+		<div class="choice">
+			<a href="###" class="source check">source-over</a>
+			<a href="###" class="source">source-atop</a>
+			<a href="###" class="source">source-in</a>
+			<a href="###" class="source">source-out</a>
+			<a href="###" class="destin">destination-over</a>
+			<a href="###" class="destin">destination-atop</a>
+			<a href="###" class="destin">destination-in</a>
+			<a href="###" class="destin">destination-out</a>
+			<a href="###" class="other">lighter</a>
+			<a href="###" class="other">copy</a>
+			<a href="###" class="other">xor</a>
+		</div>
+	</div>
+</body>
+<script>
+	var p
+	window.onload = function () {
+		p = document.getElementsByClassName('canBox')[0].getElementsByTagName('p')[0]
+		console.log(p)
+
+		//初始化
+		draw("source-over")
+		
+		var a = document.getElementsByTagName('a')
+		for (var i=0; i<a.length; i++) {
+			a[i].onclick = function () {
+				// 绘制
+				draw(this.text)
+
+				// 转变选中效果
+				document.getElementsByClassName('check')[0].classList.remove('check')
+				this.classList.add('check')
+				return false
+			}
+		}
+	}
+
+	function draw (mode) {
+		p.innerHTML = "当前设置模式为：" + mode
+
+		var canvas = document.getElementById('canvas')
+		var ct = canvas.getContext('2d')
+
+		canvas.width = 700
+		canvas.height = 500
+
+		ct.clearRect(0,0, 700,500)
+
+		// 画圆
+		ct.fillStyle = "#ff7d94"
+		ct.arc(420,280,170,0,2*Math.PI)
+		ct.fill()
+
+		// 设定操作模式
+		ct.globalCompositeOperation = mode
+		ct.fillStyle = "#06aef7"
+
+		// 画三角形
+		ct.beginPath()
+		ct.moveTo(100,390)
+		ct.lineTo(600,390)
+		ct.lineTo(180,130)
+		ct.closePath()
+		
+		ct.fill()
+	}
+		
+</script>
+</html>
+
+
