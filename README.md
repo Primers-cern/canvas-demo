@@ -3,7 +3,6 @@
 利用canvas标签及其方法绘制。后续目标为完成一个拼七巧板的小游戏。
 
 <br/>
-- ### 2.圆点时钟 - [link](http://primerscern.xyz/canvas-demo/ballTime)
 利用canvas标签绘制圆形，排列出当前时间（类似于电子钟）
 
 > #### 16 Nov - 初始版 v1.0
@@ -36,7 +35,7 @@
 >③均衡的星星密度，窗口的大小不影响你欣赏美丽的星空。
 
 <br/>
-- ### 4.globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)
+- ### 4.globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)<br/>
 Demo演示画布在设置不同的globalCompositeOperation的属性时展现的不同效果
 
 > #### 24 Nov
