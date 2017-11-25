@@ -1,10 +1,16 @@
-# canvas-demo
+# canvas-demos
 ### 1.七巧板图案 - [link](http://primerscern.xyz/canvas-demo/sevenQ)
 利用canvas标签及其方法绘制。后续目标为完成一个拼七巧板的小游戏。
 
 <br/>
 ### 2.圆点时钟 - [link](http://primerscern.xyz/canvas-demo/ballTime)
+
+<br/>
+
 利用canvas标签绘制圆形，排列出当前时间（类似于电子钟）
+
+<br/>
+
 > #### 16 Nov - 初始版 v1.0
 >初始功能：数字时钟<br/>
 >①使用间隔函数每秒绘制，实现时钟变换。
