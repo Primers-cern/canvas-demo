@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Little-stars</title>
+</head>
+<style>
+	html, body {
+		margin: 0;
+		padding: 0;
+		font-size: 0;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		/*窗口缩小时，避免滚动条出现，影响画布大小判定*/
+	}
+</style>
+<body>
+	<canvas id="cc"></canvas>
+</body>
+<script>
+	var cc, 
+		ct, 
+		int
+
+	window.onload = function () {
+		cc = document.getElementById('cc')
+		ct = cc.getContext('2d')
+
+		// 初始化
+		setCanvas()
+
+		// 窗口变化自适应
+		window.onresize = function () {
+			// 事件节流
+			clearTimeout(int)
+			int = setTimeout(function(){
+				setCanvas()
+			},200)
+		}
+	}
+
+	function setCanvas () {
+
+		cc.width = document.body.clientWidth
+		cc.height = document.body.clientHeight
+
+		// 设置并绘制渐变
+		var gradient = ct.createRadialGradient(cc.width/2,cc.height,0,
+											   cc.width/2,cc.height,cc.height)
+		gradient.addColorStop(0,"#006")
+		gradient.addColorStop(1,"#000")
+		ct.fillStyle = gradient
+		ct.fillRect(0,0,cc.width,cc.height)
+
+		// 随机画出星星，密度根据画布大小计算维持稳定。
+		var starNum = Math.floor(cc.width * cc.height / 5200)
+		for (var i=0; i<starNum; i++) {
+			var R = Math.random()*20
+			var x = Math.random()*cc.width
+			var y = Math.random()*cc.height
+			var rot = Math.random()*72
+
+			ct.save()
+			drawStar(R, x, y, rot, ct)// 半径，起始坐标，旋转角度，context
+			ct.restore()
+		}
+	}
+
+	function drawStar (R, x, y, rot, ct) {
+		ct.beginPath()
+		for (var i=0; i<5; i++) {
+			ct.lineTo(Math.cos((18 + i*72 - rot)/180 * Math.PI)*R + x,
+					 -Math.sin((18 + i*72 - rot)/180 * Math.PI)*R + y)
+			ct.lineTo(Math.cos((54 + i*72 - rot)/180 * Math.PI)*.5*R + x,
+					 -Math.sin((54 + i*72 - rot)/180 * Math.PI)*.5*R + y)
+		}
+		ct.closePath()
+
+		ct.lineJoin = "round"
+		ct.lineWidth = 2
+		ct.strokeStyle = "#ffc14f"
+		ct.fillStyle = "#ffe635"
+
+		ct.fill()
+		ct.stroke()
+	}
+</script>
+</html>
+
+
