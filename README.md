@@ -4,6 +4,15 @@ Canvas-Demos
 七巧板图案 - [link](http://primerscern.xyz/canvas-demo/sevenQ)
 -------------------------
 利用canvas标签及其方法绘制。后续目标为完成一个拼七巧板的小游戏。
+
+* 16 Nov - 初始版 v1.0
+
+>简单的七巧板图案，居中于页面。
+
+* 26 Nov - 版本 v2.0
+
+>利用isPointInPath接口添加了交互动画。鼠标移动到某版块上会变色。
+
 <br/>
 
 圆点时钟 - [link](http://primerscern.xyz/canvas-demo/ballTime)
@@ -35,7 +44,8 @@ Canvas-Demos
 >③通过0/1状态判定是否执行动画语句。<br/>
 >④关闭动画后初始化动画状态，避免重新打开后有上次的动画残余。
 
-（待更新更多功能） 
+（待更新更多功能）
+
 <br/>
 
 繁星漫天 - [link](http://primerscern.xyz/canvas-demo/Stars)

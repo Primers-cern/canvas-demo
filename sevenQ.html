@@ -36,38 +36,62 @@
 
 
 	<script type="text/javascript">
+		var block = [ // 七巧板中每个块的数据
+			{p:[{x:0,y:0},{x:200,y:200},{x:0,y:400}],color:"blue"},
+			{p:[{x:400,y:0},{x:0,y:0},{x:200,y:200}],color:"green"},
+			{p:[{x:0,y:400},{x:100,y:300},{x:200,y:400}],color:"pink"},
+			{p:[{x:300,y:100},{x:200,y:200},{x:300,y:300}],color:"yellow"},
+			{p:[{x:200,y:400},{x:400,y:200},{x:400,y:400}],color:"orange"},
+			{p:[{x:300,y:300},{x:200,y:200},{x:100,y:300},{x:200,y:400}],color:"Purple"},
+			{p:[{x:400,y:0},{x:400,y:200},{x:300,y:300},{x:300,y:100}],color:"red"}
+		]
+		var canvas, context
+
 		window.onload = function () {
-			var canvas = document.getElementById('canvas')
-			var context = canvas.getContext('2d')
+			// 配置画布
+			canvas = document.getElementById('canvas')
+			context = canvas.getContext('2d')
 
 			canvas.width = 400;
 			canvas.height = 400;
 
-			var block = [
-				{p:[{x:0,y:0},{x:200,y:200},{x:0,y:400}],color:"blue"},
-				{p:[{x:400,y:0},{x:0,y:0},{x:200,y:200}],color:"green"},
-				{p:[{x:0,y:400},{x:100,y:300},{x:200,y:400}],color:"pink"},
-				{p:[{x:300,y:100},{x:200,y:200},{x:300,y:300}],color:"yellow"},
-				{p:[{x:200,y:400},{x:400,y:200},{x:400,y:400}],color:"orange"},
-				{p:[{x:300,y:300},{x:200,y:200},{x:100,y:300},{x:200,y:400}],color:"Purple"},
-				{p:[{x:400,y:0},{x:400,y:200},{x:300,y:300},{x:300,y:100}],color:"red"}
-			]
+			// 初始化
+			draw()
+
+			// 监听画布上的鼠标移动
+			canvas.addEventListener('mousemove', isMouseOn)
+
+			// 鼠标离开后复原七巧板
+			canvas.addEventListener('mouseout', isMouseOn)
+		}
+
+		// 绘制板块
+		function draw (x, y) {
+			context.clearRect(0,0, canvas.width,canvas.height)
 
 			for (var i=0; i<block.length; i++) {
-				draw(block[i], context)
+				context.beginPath()
+				for (var j=0; j<block[i].p.length; j++) {
+					context.lineTo(block[i].p[j].x,block[i].p[j].y)
+				}
+			
+				// 判定鼠标是否在上面，两种绘制模式
+					console.log(context.isPointInPath(x,y))
+				if (context.isPointInPath(x,y)) {
+					context.fillStyle = "#999"
+				} else {
+					context.fillStyle = block[i].color
+				}
+				
+				context.fill()
 			}
 		}
-		function draw (val, ctx) {
-			ctx.beginPath()
-			ctx.moveTo(val.p[0].x,val.p[0].y)
-			for (var j=1; j<val.p.length; j++) {
-				ctx.lineTo(val.p[j].x,val.p[j].y)
-			}
-		
 
-			ctx.fillStyle = val.color
-			ctx.fill()
+		function isMouseOn (event) {
+			var x = event.clientX - canvas.getBoundingClientRect().left
+			var y = event.clientY - canvas.getBoundingClientRect().top
 
+			draw(x, y)
 		}
 
 	</script>
