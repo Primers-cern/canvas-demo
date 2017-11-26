@@ -62,3 +62,7 @@ globalCompositeOperation演示 - [link](http://primerscern.xyz/canvas-demo/gCO)
 * 25 Nov
 
 >①优化布局垂直排列时的居中模式。
+
+* 26 Nov
+
+>①增加在IE和Edge环境下打开网页的温馨提示。
